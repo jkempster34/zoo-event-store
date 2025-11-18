@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_18_132903) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_18_140830) do
+  create_table "animals", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.integer "price"
+    t.datetime "updated_at", null: false
+  end
+
   create_table "event_store_events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.binary "data", null: false
