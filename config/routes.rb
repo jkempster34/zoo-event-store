@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "animals/index"
+  get "animals/new"
+  get "animals/create"
+  get "animals/transfer"
   mount RailsEventStore::Browser => '/res' if Rails.env.development?
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
