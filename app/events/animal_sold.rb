@@ -1,0 +1,1 @@
+class AnimalSold < RailsEventStore::Event; end

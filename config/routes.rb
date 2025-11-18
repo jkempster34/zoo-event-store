@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get "animals/index"
-  get "animals/new"
-  get "animals/create"
-  get "animals/transfer"
+  resources :animals
   mount RailsEventStore::Browser => '/res' if Rails.env.development?
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -15,5 +12,10 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "animals#index"
+
+  resources :animals do
+    post :buy, on: :member
+    post :sell, on: :member
+  end
 end

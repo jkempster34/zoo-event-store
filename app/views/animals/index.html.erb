@@ -1,2 +1,14 @@
-<h1>Animals#index</h1>
-<p>Find me in app/views/animals/index.html.erb</p>
+<h1>Zoo Animals</h1>
+<p>Pot Balance: <%= @pot_balance %></p>
+
+<ul>
+  <% @animals.each do |animal| %>
+    <li>
+      <%= animal.name %> ($<%= animal.price %>)
+      <%= button_to "Buy", buy_animal_path(animal), method: :post %>
+      <%= button_to "Sell", sell_animal_path(animal), method: :post %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add Animal", new_animal_path %>
