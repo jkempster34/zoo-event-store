@@ -1,7 +1,7 @@
 class AnimalsController < ApplicationController
   def index
-    @animals = Animal.all
-    @pot_balance = PotProjection.new.call
+    @animals = GetAllAnimalsQuery.new.call
+    @pot_balance = GetPotBalanceQuery.new.call
   end
 
   def new
@@ -9,7 +9,11 @@ class AnimalsController < ApplicationController
   end
 
   def create
-    @animal = Animal.create!(animal_params)
+    CreateAnimalCommand.new(
+      animal_params[:name],
+      animal_params[:price]
+    ).call
+
     redirect_to animals_path
   end
 
