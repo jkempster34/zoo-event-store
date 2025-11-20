@@ -1,0 +1,10 @@
+<h1>New quarantine</h1>
+
+<%= form_for @start_quarantine, url: start_quarantine_path do |f| %>
+  <%= f.label :quarantine_location %>
+  <%= f.text_field :quarantine_location %><br>
+  <%= f.label :quarantine_start_at %>
+  <%= f.date_field :quarantine_start_at %><br>
+
+  <%= f.submit "Add" %>
+<% end %>

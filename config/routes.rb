@@ -18,4 +18,10 @@ Rails.application.routes.draw do
     post :buy, on: :member
     post :sell, on: :member
   end
+
+  resources :onboardings, only: [:index, :new, :create, :show] do
+    member do
+      put :start_quarantine
+    end
+  end
 end

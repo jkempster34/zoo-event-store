@@ -1,0 +1,22 @@
+<h1>Animal Show</h1>
+
+<%= @onboarding.status %>
+<%= @onboarding.animal.name %>
+<%= @onboarding.animal.species %>
+
+<% Event.all.each do |e| %>
+  <p><%= e.data %></p>
+<% end %>
+
+<h1>New quarantine</h1>
+
+<%= form_for @start_quarantine, method: :put, url: start_quarantine_onboarding_path(@onboarding.unique_id) do |f| %>
+  <%= f.label :quarantine_location %>
+  <%= f.text_field :quarantine_location %><br>
+  <%= f.label :quarantine_started_at %>
+  <%= f.date_field :quarantine_started_at %><br>
+
+  <%= f.submit "Add" %>
+<% end %>
+
+

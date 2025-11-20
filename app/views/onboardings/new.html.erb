@@ -1,12 +1,13 @@
 <h1>Add a New Animal</h1>
 
-<%= form_for @receive, url: animals_path do |f| %>
+<%= form_for @receive, url: onboardings_path do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :species %>
   <%= f.text_field :species %><br>
   <%= f.label :date_received %>
   <%= f.date_field :date_received %><br>
-  <%= f.checkbox :cites_certificate_present %>
+  <%= f.label :cites_certificate_present %>
+  <%= f.checkbox :cites_certificate_present %><br>
   <%= f.submit "Add" %>
 <% end %>

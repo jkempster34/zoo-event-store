@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_20_125002) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_20_154055) do
   create_table "animals", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -56,6 +56,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_20_125002) do
     t.boolean "cites_certificate_present", default: true
     t.datetime "created_at", null: false
     t.date "date_received"
+    t.string "quarantine_location"
+    t.datetime "quarantine_started_at"
     t.string "status"
     t.string "unique_id"
     t.datetime "updated_at", null: false

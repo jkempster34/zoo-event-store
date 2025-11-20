@@ -15,11 +15,13 @@ class Receive
 
   validates_presence_of :species
 
+  attr_reader :onboarding_id
+
   def run!
     return false if invalid?
 
     animal_id = SecureRandom.uuid
-    onboarding_id = SecureRandom.uuid
+    @onboarding_id = SecureRandom.uuid
     animal = Animal.new(unique_id: animal_id)
     onboarding = Onboarding.new(unique_id: onboarding_id, animal: animal)
 
