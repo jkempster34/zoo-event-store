@@ -8,10 +8,12 @@ class AnimalsController < ApplicationController
   end
 
   def create
-    @receive = Receive.new(name: params[:name], species: params[:species], date_received: params[:date_received])
+    @receive = Receive.new(
+      animal_params
+    )
 
     if @receive.run! == false
-      render :new
+      render :new && return
     end
 
     redirect_to animals_path
@@ -20,6 +22,11 @@ class AnimalsController < ApplicationController
   private
 
   def animal_params
-    params.require(:animal).permit(:name, :species, :date_received)
+    params.require(:receive).permit(
+      :name,
+      :species,
+      :date_received,
+      :cites_certificate_present
+    )
   end
 end
