@@ -24,9 +24,8 @@ class Receive
     onboarding = Onboarding.new(unique_id: onboarding_id, animal: animal)
 
     events = []
-    if cites_certificate_present
-      events << ReceivedEvent.new(animal_unique_id: animal_id, onboarding_unique_id: onboarding_id, date_received:, name:, species:)
-    else
+    events << ReceivedEvent.new(animal_unique_id: animal_id, onboarding_unique_id: onboarding_id, date_received:, name:, species:)
+    unless cites_certificate_present
       events << NoCitesCertificateEvent.new(animal_unique_id: animal_id, onboarding_unique_id: onboarding_id)
     end
 
@@ -46,8 +45,9 @@ class Receive
     when ReceivedEvent
       # assigning properties from the event, so that the event and onboarding/animal record are in sync
       onboarding.date_received = event.date_received
-      onboarding.name = event.name
-      onboarding.species = event.species
+      animal.name = event.name
+      animal.species = event.species
+      onboarding.animal = animal
       onboarding.status = :received
       onboarding.save!
     when NoCitesCertificateEvent
