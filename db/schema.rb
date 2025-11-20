@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_18_140830) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_20_125002) do
   create_table "animals", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
     t.integer "price"
+    t.string "species"
+    t.string "unique_id"
     t.datetime "updated_at", null: false
   end
 
@@ -40,6 +42,24 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_18_140830) do
     t.index ["event_id"], name: "index_event_store_events_in_streams_on_event_id"
     t.index ["stream", "event_id"], name: "index_event_store_events_in_streams_on_stream_and_event_id", unique: true
     t.index ["stream", "position"], name: "index_event_store_events_in_streams_on_stream_and_position", unique: true
+  end
+
+  create_table "events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.json "data"
+    t.string "type"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "onboardings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "animal_id"
+    t.boolean "cites_certificate_present", default: true
+    t.datetime "created_at", null: false
+    t.date "date_received"
+    t.string "status"
+    t.string "unique_id"
+    t.datetime "updated_at", null: false
+    t.index ["animal_id"], name: "index_onboardings_on_animal_id"
   end
 
   add_foreign_key "event_store_events_in_streams", "event_store_events", column: "event_id", primary_key: "event_id"

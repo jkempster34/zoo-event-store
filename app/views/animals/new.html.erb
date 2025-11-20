@@ -1,9 +1,11 @@
 <h1>Add a New Animal</h1>
 
-<%= form_with model: @animal do |f| %>
+<%= form_for @receive, url: animals_path do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
-  <%= f.label :price %>
-  <%= f.number_field :price %><br>
+  <%= f.label :species %>
+  <%= f.text_field :species %><br>
+  <%= f.label :date_received %>
+  <%= f.date_field :date_received %><br>
   <%= f.submit "Add" %>
 <% end %>

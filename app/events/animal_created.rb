@@ -1,1 +1,0 @@
-class AnimalCreated < RailsEventStore::Event; end
